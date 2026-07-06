@@ -1,0 +1,8 @@
+# Simulation (iverilog / vvp)
+*.vcd
+sim
+build/
+
+# Editor / OS
+.DS_Store
+.vscode/
