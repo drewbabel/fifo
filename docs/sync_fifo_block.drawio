@@ -1,0 +1,79 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="sync_fifo" id="sync_fifo">
+    <mxGraphModel grid="0" gridSize="10" pageWidth="1000" pageHeight="720" background="#ffffff">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Outer boundary -->
+        <mxCell id="outer" value="" vertex="1" parent="1"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=2;"><mxGeometry x="180" y="90" width="650" height="570" as="geometry"/></mxCell>
+        <mxCell id="outer-lbl" value="sync_fifo" vertex="1" parent="1"
+          style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=17;fillColor=none;strokeColor=none;"><mxGeometry x="186" y="64" width="150" height="22" as="geometry"/></mxCell>
+
+        <!-- Blocks -->
+        <mxCell id="wptr" value="write pointer&#10;(binary + wrap bit)" vertex="1" parent="1"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#000000;strokeWidth=1.5;align=center;verticalAlign=middle;fontSize=16;"><mxGeometry x="270" y="175" width="190" height="90" as="geometry"/></mxCell>
+        <mxCell id="mem" value="memory&#10;DEPTH &#215; WIDTH" vertex="1" parent="1"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#000000;strokeWidth=1.5;align=center;verticalAlign=middle;fontSize=16;"><mxGeometry x="270" y="330" width="190" height="90" as="geometry"/></mxCell>
+        <mxCell id="rptr" value="read pointer&#10;(binary + wrap bit)" vertex="1" parent="1"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#000000;strokeWidth=1.5;align=center;verticalAlign=middle;fontSize=16;"><mxGeometry x="270" y="485" width="190" height="90" as="geometry"/></mxCell>
+        <mxCell id="flags" value="flag logic&#10;full / empty" vertex="1" parent="1"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#000000;strokeWidth=1.5;align=center;verticalAlign=middle;fontSize=16;"><mxGeometry x="610" y="330" width="170" height="90" as="geometry"/></mxCell>
+
+        <!-- I/O labels -->
+        <mxCell id="io-wren"   value="wr_en"   vertex="1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fillColor=none;strokeColor=none;"><mxGeometry x="82" y="209" width="58" height="22" as="geometry"/></mxCell>
+        <mxCell id="io-clk"    value="clk"     vertex="1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fillColor=none;strokeColor=none;"><mxGeometry x="100" y="264" width="40" height="22" as="geometry"/></mxCell>
+        <mxCell id="io-rstn"   value="rst_n"   vertex="1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fillColor=none;strokeColor=none;"><mxGeometry x="88" y="318" width="52" height="22" as="geometry"/></mxCell>
+        <mxCell id="io-wrdata" value="wr_data" vertex="1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fillColor=none;strokeColor=none;"><mxGeometry x="22" y="373" width="78" height="22" as="geometry"/></mxCell>
+        <mxCell id="io-rden"   value="rd_en"   vertex="1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fillColor=none;strokeColor=none;"><mxGeometry x="82" y="519" width="58" height="22" as="geometry"/></mxCell>
+
+        <mxCell id="io-full"   value="full"    vertex="1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fillColor=none;strokeColor=none;"><mxGeometry x="880" y="341" width="60" height="22" as="geometry"/></mxCell>
+        <mxCell id="io-empty"  value="empty"   vertex="1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fillColor=none;strokeColor=none;"><mxGeometry x="880" y="386" width="66" height="22" as="geometry"/></mxCell>
+        <mxCell id="io-rddata" value="rd_data" vertex="1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fillColor=none;strokeColor=none;"><mxGeometry x="912" y="459" width="78" height="22" as="geometry"/></mxCell>
+
+        <!-- Internal address wires (labels lifted beside the vertical) -->
+        <mxCell id="e-wraddr" value="wr_addr" edge="1" parent="1" source="wptr" target="mem"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;labelBackgroundColor=#ffffff;fontStyle=2;fontSize=13;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"><mxGeometry relative="1" as="geometry"><mxPoint x="34" y="0" as="offset"/></mxGeometry></mxCell>
+        <mxCell id="e-rdaddr" value="rd_addr" edge="1" parent="1" source="rptr" target="mem"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;labelBackgroundColor=#ffffff;fontStyle=2;fontSize=13;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;"><mxGeometry relative="1" as="geometry"><mxPoint x="34" y="0" as="offset"/></mxGeometry></mxCell>
+
+        <!-- Pointers feed the flag logic -->
+        <mxCell id="e-wpf" edge="1" parent="1" source="wptr" target="flags"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e-rpf" edge="1" parent="1" source="rptr" target="flags"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Left inputs -->
+        <mxCell id="e-wren" edge="1" parent="1" source="io-wren" target="wptr"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e-clk" edge="1" parent="1" source="io-clk" target="outer"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.325;entryDx=0;entryDy=0;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e-rstn" edge="1" parent="1" source="io-rstn" target="outer"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.419;entryDx=0;entryDy=0;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e-wrdata" edge="1" parent="1" source="io-wrdata" target="mem"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.6;entryDx=0;entryDy=0;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e-rden" edge="1" parent="1" source="io-rden" target="rptr"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Right outputs -->
+        <mxCell id="e-full" edge="1" parent="1" source="flags" target="io-full"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;exitX=1;exitY=0.244;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e-empty" edge="1" parent="1" source="flags" target="io-empty"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;exitX=1;exitY=0.744;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e-rddata" edge="1" parent="1" source="mem" target="io-rddata"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="540" y="375"/><mxPoint x="540" y="470"/></Array></mxGeometry></mxCell>
+
+        <!-- Bus-width ticks outside the boundary -->
+        <mxCell id="bus-wr" edge="1" parent="1"
+          style="endArrow=none;startArrow=none;html=1;strokeColor=#000000;strokeWidth=1.5;"><mxGeometry relative="1" as="geometry"><mxPoint x="133" y="393" as="sourcePoint"/><mxPoint x="147" y="375" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="busw-wr" value="WIDTH" vertex="1" parent="1"
+          style="text;html=1;align=center;fontStyle=2;fontSize=13;fillColor=none;strokeColor=none;"><mxGeometry x="110" y="352" width="60" height="18" as="geometry"/></mxCell>
+        <mxCell id="bus-rd" edge="1" parent="1"
+          style="endArrow=none;startArrow=none;html=1;strokeColor=#000000;strokeWidth=1.5;"><mxGeometry relative="1" as="geometry"><mxPoint x="865" y="479" as="sourcePoint"/><mxPoint x="879" y="461" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="busw-rd" value="WIDTH" vertex="1" parent="1"
+          style="text;html=1;align=center;fontStyle=2;fontSize=13;fillColor=none;strokeColor=none;"><mxGeometry x="842" y="438" width="60" height="18" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
