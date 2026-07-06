@@ -11,3 +11,15 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y iverilog
       - name: sync_fifo
         run: make MOD=sync_fifo
+      - name: synchronizer
+        run: make MOD=synchronizer
+      - name: async_fifo
+        run: make MOD=async_fifo
+
+  formal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: YosysHQ/setup-oss-cad-suite@v3
+      - name: async_fifo formal
+        run: make formal MOD=async_fifo
