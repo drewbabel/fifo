@@ -1,7 +1,7 @@
 module async_fifo #(
     parameter int WIDTH = 8,
     parameter int DEPTH = 16,
-    localparam int Aw = $clog2(DEPTH)
+    localparam int AW = $clog2(DEPTH)
 ) (
     // Write
     input  logic             wr_clk,
@@ -18,16 +18,16 @@ module async_fifo #(
     output logic             empty
 );
 
-  logic [  Aw:0] wr_gray;
-  logic [  Aw:0] rd_gray;
-  logic [  Aw:0] wr_gray_sync;
-  logic [  Aw:0] rd_gray_sync;
-  logic [Aw-1:0] wr_addr;
-  logic [Aw-1:0] rd_addr;
+  logic [  AW:0] wr_gray;
+  logic [  AW:0] rd_gray;
+  logic [  AW:0] wr_gray_sync;
+  logic [  AW:0] rd_gray_sync;
+  logic [AW-1:0] wr_addr;
+  logic [AW-1:0] rd_addr;
 
   // Synchronizer for write pointer to read clock domain
   synchronizer #(
-      .WIDTH(Aw + 1)
+      .WIDTH(AW + 1)
   ) u_rd_gray_sync (
       .clk(wr_clk),
       .d  (rd_gray),
@@ -36,7 +36,7 @@ module async_fifo #(
 
   // Synchronizer for read pointer to write clock domain
   synchronizer #(
-      .WIDTH(Aw + 1)
+      .WIDTH(AW + 1)
   ) u_wr_gray_sync (
       .clk(rd_clk),
       .d  (wr_gray),

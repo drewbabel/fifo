@@ -1,18 +1,18 @@
 module wptr_full #(
     parameter  int DEPTH = 16,
-    localparam int Aw    = $clog2(DEPTH)  // Address width: pointer = Aw+1 bits (extra wrap bit)
+    localparam int AW    = $clog2(DEPTH)  // Address width: pointer = AW+1 bits (extra wrap bit)
 ) (
     input  logic          wr_clk,
     input  logic          wr_rst_n,
     input  logic          wr_en,
-    input  logic [  Aw:0] rd_gray_sync,  // Synced into write domain
+    input  logic [  AW:0] rd_gray_sync,  // Synced into write domain
     output logic          full,
-    output logic [Aw-1:0] wr_addr,
-    output logic [  Aw:0] wr_gray
+    output logic [AW-1:0] wr_addr,
+    output logic [  AW:0] wr_gray
 );
 
-  logic [Aw:0] wr_ptr;  // Binary version
-  logic [Aw:0] wr_ptr_next;
+  logic [AW:0] wr_ptr;  // Binary version
+  logic [AW:0] wr_ptr_next;
 
   always @(posedge wr_clk) begin
     if (!wr_rst_n) begin
@@ -24,8 +24,8 @@ module wptr_full #(
     end
   end
 
-  assign wr_addr = wr_ptr[Aw-1:0];
+  assign wr_addr = wr_ptr[AW-1:0];
   assign wr_ptr_next = wr_ptr + (wr_en && !full);  // +1 on accepted write, else +0
-  assign full = (wr_gray == {~rd_gray_sync[Aw:Aw-1], rd_gray_sync[Aw-2:0]});
+  assign full = (wr_gray == {~rd_gray_sync[AW:AW-1], rd_gray_sync[AW-2:0]});
 
 endmodule
