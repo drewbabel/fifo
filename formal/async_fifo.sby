@@ -1,0 +1,27 @@
+[tasks]
+prove
+cover
+
+[options]
+prove: mode prove
+cover: mode cover
+cover: depth 40
+multiclock on
+
+[engines]
+smtbmc z3
+
+[script]
+read -formal synchronizer.sv
+read -formal fifomem.sv
+read -formal rptr_empty.sv
+read -formal wptr_full.sv
+read -formal async_fifo.sv
+prep -top async_fifo
+
+[files]
+rtl/synchronizer.sv
+rtl/fifomem.sv
+rtl/rptr_empty.sv
+rtl/wptr_full.sv
+rtl/async_fifo.sv

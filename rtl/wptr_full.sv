@@ -28,4 +28,12 @@ module wptr_full #(
   assign wr_ptr_next = wr_ptr + (wr_en && !full);  // +1 on accepted write, else +0
   assign full = (wr_gray == {~rd_gray_sync[AW:AW-1], rd_gray_sync[AW-2:0]});
 
+`ifdef FORMAL
+  initial begin
+    assume (wr_ptr == '0);
+    assume (wr_gray == '0);
+  end
+  always_comb assert (wr_gray == (wr_ptr ^ (wr_ptr >> 1)));
+`endif
+
 endmodule

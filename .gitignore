@@ -3,6 +3,9 @@
 sim
 build/
 
+# SymbiYosys work directories
+formal/*/
+
 # Editor / OS
 .DS_Store
 .vscode/

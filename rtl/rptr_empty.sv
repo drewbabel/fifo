@@ -28,6 +28,14 @@ module rptr_empty #(
   assign rd_ptr_next = rd_ptr + (rd_en && !empty);  // +1 on accepted read, else +0
   assign empty = (rd_gray == wr_gray_sync);
 
+`ifdef FORMAL
+  initial begin
+    assume (rd_ptr == '0);
+    assume (rd_gray == '0);
+  end
+  always_comb assert (rd_gray == (rd_ptr ^ (rd_ptr >> 1)));
+`endif
+
 endmodule
 
 
