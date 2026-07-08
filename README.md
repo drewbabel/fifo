@@ -14,6 +14,13 @@ Every module has a self-checking testbench, and the asynchronous FIFO carries a 
 
 ![Asynchronous FIFO block diagram](docs/async_fifo_block.svg)
 
+## Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `WIDTH` | `8` | Bit width of each data entry |
+| `DEPTH` | `16` | Number of entries the FIFO can hold |
+
 ## Interface
 
 ### `sync_fifo`
@@ -43,13 +50,6 @@ Every module has a self-checking testbench, and the asynchronous FIFO carries a 
 | `rd_en` | in | 1 | Read enable |
 | `rd_data` | out | `WIDTH` | Data read |
 | `empty` | out | 1 | FIFO is empty in read domain (cannot read) |
-
-## Parameters
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `WIDTH` | `8` | Bit width of each data entry |
-| `DEPTH` | `16` | Number of entries the FIFO can hold |
 
 ## Verification
 
