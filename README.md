@@ -90,14 +90,14 @@ make formal MOD=async_fifo  # run the module's SymbiYosys proof
 
 Synthesized for the Digilent Basys 3 (Xilinx Artix-7).
 
-| Module | LUTs | Flip-flops | Carry cells | I/O buffers |
-|--------|------|------------|-------------|-------------|
-| `synchronizer` | 0 | 2 | 0 | 4 |
-| `fifomem` | 2 | 8 | 0 | 30 |
-| `wptr_full` | 9 | 9 | 2 | 18 |
-| `rptr_empty` | 9 | 9 | 2 | 18 |
-| `sync_fifo` | 8 | 18 | 4 | 22 |
-| `async_fifo` | 19 | 46 | 4 | 24 |
+| Module | LUTs | Flip-flops | Carry cells |
+|--------|------|------------|-------------|
+| `synchronizer` | 0 | 2 | 0 |
+| `fifomem` | 2 | 8 | 0 |
+| `wptr_full` | 9 | 9 | 2 |
+| `rptr_empty` | 9 | 9 | 2 |
+| `sync_fifo` | 8 | 18 | 4 |
+| `async_fifo` | 19 | 46 | 4 |
 
 ### Tool versions
 
