@@ -10,9 +10,9 @@ Both implementations store data in a dual-port memory with separate read and wri
 
 Every module has a self-checking testbench, and the asynchronous FIFO carries a full unbounded SymbiYosys proof that certifies pointer ordering and occupancy bounds across all clock edges.
 
-![Synchronous FIFO block diagram](docs/sync_fifo_block.png)
+![Synchronous FIFO block diagram](docs/sync_fifo_block.svg)
 
-![Asynchronous FIFO block diagram](docs/async_fifo_block.png)
+![Asynchronous FIFO block diagram](docs/async_fifo_block.svg)
 
 ## Interface
 
@@ -71,9 +71,9 @@ Properties proven in formal:
 
 ## Results
 
-![Synchronous FIFO waveform](docs/sync_fifo_waveform.png)
+![Synchronous FIFO waveform](docs/sync_fifo_waveform.svg)
 
-![Asynchronous FIFO waveform](docs/async_fifo_waveform.png)
+![Asynchronous FIFO waveform](docs/async_fifo_waveform.svg)
 
 ## Building and running
 
