@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="async_fifo" id="async_fifo">
-        <mxGraphModel dx="1021" dy="837" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1240" pageHeight="700" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="1030" dy="837" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1240" pageHeight="700" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -86,7 +86,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="e-rdaddr" value="rd_addr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;labelBackgroundColor=#ffffff;fontStyle=2;fontSize=13;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.4;entryDx=0;entryDy=0;align=right;" parent="1" source="rptr" target="mem" edge="1">
+                <mxCell id="e-rdaddr" value="rd_addr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;labelBackgroundColor=#ffffff;fontStyle=2;fontSize=13;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.4;entryDx=0;entryDy=0;align=right;verticalAlign=bottom;spacingTop=0;horizontal=1;labelPosition=left;verticalLabelPosition=top;labelBorderColor=none;textShadow=0;spacingBottom=14;" parent="1" source="rptr" target="mem" edge="1">
                     <mxGeometry x="0.0047" y="13" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
