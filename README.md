@@ -84,6 +84,7 @@ make MOD=sync_fifo          # run a module's testbench
 make wave MOD=sync_fifo     # run the testbench and open the waveform in Surfer
 make formal MOD=async_fifo  # run the module's SymbiYosys proof
 ./synth_stats.sh sync_fifo  # report a module's synthesis cost
+./fmax.sh async_fifo tt_async_fifo wr_clk rd_clk   # fmax and utilization
 ```
 
 ## Synthesis
@@ -99,6 +100,15 @@ Synthesized for the Digilent Basys 3 (Xilinx Artix-7).
 | `sync_fifo` | 8 | 18 | 4 |
 | `async_fifo` | 19 | 46 | 4 |
 
+### Post-route timing
+
+`fmax.sh` places and routes each FIFO in a registered-boundary harness and reports the maximum clock frequency. The frequencies come from the open nextpnr-xilinx flow, which is experimental and not vendor signed timing analysis. The `async_fifo` carries one frequency per clock domain, since a single figure has no meaning across the two independent clocks. The memory maps to distributed RAM rather than block RAM at this depth.
+
+| Module | LUTs | Flip-flops | Block RAMs | Distributed RAM | Fmax |
+|--------|------|------------|------------|-----------------|------|
+| `sync_fifo` | 8 | 18 | 0 | 2 | 324 MHz |
+| `async_fifo` | 19 | 46 | 0 | 2 | 296 MHz write, 343 MHz read |
+
 ### Tool versions
 
-Icarus Verilog 13.0, Yosys 0.66, SymbiYosys 0.66 with Z3, and Surfer.
+Icarus Verilog 13.0, Yosys 0.66, SymbiYosys 0.66 with Z3, nextpnr-xilinx 0.8.2, and Surfer.
