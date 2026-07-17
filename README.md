@@ -80,11 +80,11 @@ Properties proven in formal:
 Every module builds from the top-level Makefile.
 
 ```
-make MOD=sync_fifo          # run a module's testbench
-make wave MOD=sync_fifo     # run the testbench and open the waveform in Surfer
-make formal MOD=async_fifo  # run the module's SymbiYosys proof
-./synth_stats.sh sync_fifo  # report a module's synthesis cost
-./fmax.sh async_fifo tt_async_fifo wr_clk rd_clk   # fmax and utilization
+make MOD=sync_fifo                                  # run a module's testbench
+make wave MOD=sync_fifo                             # run the testbench and open the waveform in Surfer
+make formal MOD=async_fifo                          # run the module's SymbiYosys proof
+./synth_stats.sh sync_fifo                          # report a module's synthesis cost
+./fmax.sh async_fifo tt_async_fifo wr_clk rd_clk    # fmax and utilization
 ```
 
 ## Synthesis
@@ -102,7 +102,7 @@ Synthesized for the Digilent Basys 3 (Xilinx Artix-7).
 
 ### Post-route timing
 
-`fmax.sh` places and routes each FIFO in a registered-boundary harness and reports the maximum clock frequency. The frequencies come from the open nextpnr-xilinx flow, which is experimental and not vendor signed timing analysis. The `async_fifo` carries one frequency per clock domain, since a single figure has no meaning across the two independent clocks. The memory maps to distributed RAM rather than block RAM at this depth.
+`fmax.sh` places and routes each FIFO in a registered-boundary harness and reports the maximum clock frequency. This data relies on the experimental nextpnr-xilinx open-source toolchain, meaning frequencies are unverified and lack vendor-signed timing analysis. The `async_fifo` carries one frequency per clock domain, since a single figure has no meaning across the two independent clocks. The memory maps to distributed RAM rather than block RAM at this depth.
 
 | Module | LUTs | Flip-flops | Block RAMs | Distributed RAM | Fmax |
 |--------|------|------------|------------|-----------------|------|
