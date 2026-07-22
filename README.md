@@ -14,6 +14,30 @@ Every module has a self-checking testbench, and the asynchronous FIFO carries a 
 
 ![Asynchronous FIFO block diagram](docs/async_fifo_block.svg)
 
+## Verification
+
+| Module | Method |
+|--------|--------|
+| `synchronizer` | Self-checking testbench |
+| `sync_fifo` | Self-checking testbench |
+| `async_fifo` | Self-checking testbench + SymbiYosys proofs |
+
+The `fifomem`, `wptr_full`, and `rptr_empty` submodules are exercised through the `async_fifo` testbench and covered by its formal proof.
+
+Properties proven in formal:
+- Occupancy never exceeds `DEPTH`
+- `empty` is asserted when occupancy equals zero
+- `full` is asserted when occupancy equals `DEPTH`
+- Gray-coded pointers maintain correct ring ordering across all write/read clock patterns
+- Write pointer is never passed by read pointer and vice versa
+- Proven over unbounded k-induction for all possible inputs and clock patterns
+
+## Results
+
+![Synchronous FIFO waveform](docs/sync_fifo_waveform.svg)
+
+![Asynchronous FIFO waveform](docs/async_fifo_waveform.svg)
+
 ## Parameters
 
 | Parameter | Default | Description |
@@ -50,30 +74,6 @@ Every module has a self-checking testbench, and the asynchronous FIFO carries a 
 | `rd_en` | in | 1 | Read enable |
 | `rd_data` | out | `WIDTH` | Data read |
 | `empty` | out | 1 | FIFO is empty in read domain (cannot read) |
-
-## Verification
-
-| Module | Method |
-|--------|--------|
-| `synchronizer` | Self-checking testbench |
-| `sync_fifo` | Self-checking testbench |
-| `async_fifo` | Self-checking testbench + SymbiYosys proofs |
-
-The `fifomem`, `wptr_full`, and `rptr_empty` submodules are exercised through the `async_fifo` testbench and covered by its formal proof.
-
-Properties proven in formal:
-- Occupancy never exceeds `DEPTH`
-- `empty` is asserted when occupancy equals zero
-- `full` is asserted when occupancy equals `DEPTH`
-- Gray-coded pointers maintain correct ring ordering across all write/read clock patterns
-- Write pointer is never passed by read pointer and vice versa
-- Proven over unbounded k-induction for all possible inputs and clock patterns
-
-## Results
-
-![Synchronous FIFO waveform](docs/sync_fifo_waveform.svg)
-
-![Asynchronous FIFO waveform](docs/async_fifo_waveform.svg)
 
 ## Building and running
 
