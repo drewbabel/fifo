@@ -9,3 +9,5 @@ formal/*/
 # Editor / OS
 .DS_Store
 .vscode/
+
+*.ron
