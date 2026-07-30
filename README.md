@@ -46,6 +46,8 @@ Synthesized for the Xilinx Artix-7 XC7A35T through Yosys and nextpnr-xilinx.
 make MOD=sync_fifo                                  # run a module's testbench
 make wave MOD=sync_fifo                             # run the testbench and open the waveform in Surfer
 make formal MOD=async_fifo                          # run the module's SymbiYosys proof
+make trace MOD=async_fifo                           # print a formal counterexample as text
+make view-formal MOD=async_fifo                     # open a formal waveform in Surfer
 ./synth_stats.sh sync_fifo                          # report a module's synthesis cost
 ./fmax.sh async_fifo tt_async_fifo wr_clk rd_clk    # fmax and utilization
 ```
