@@ -27,18 +27,18 @@ The asynchronous proof runs unbounded k-induction over every input and clock pat
 
 ## Implementation
 
-Synthesized for the Xilinx Artix-7 XC7A35T through Yosys and nextpnr-xilinx.
+Synthesized for the Xilinx Artix-7 XC7A35T. Cell counts come from Yosys, and the frequencies come from AMD Vivado 2026.1 place-and-route.
 
 | Module | LUTs | Flip-flops | Distributed RAM | Fmax |
 |--------|------|------------|-----------------|------|
 | `synchronizer` | 0 | 2 | 0 | |
 | `fifomem` | 2 | 8 | 0 | |
-| `sync_fifo` | 8 | 18 | 2 | 324 MHz |
+| `sync_fifo` | 8 | 18 | 2 | 346.1 MHz |
 | `wptr_full` | 9 | 9 | 0 | |
 | `rptr_empty` | 9 | 9 | 0 | |
-| `async_fifo` | 19 | 46 | 2 | 296 MHz write, 343 MHz read |
+| `async_fifo` | 19 | 46 | 2 | 375.8 MHz write, 409.2 MHz read |
 
-`fmax.sh` places and routes each FIFO in a registered-boundary harness. The frequencies come from nextpnr-xilinx, an experimental open-source flow with no vendor-signed timing analysis. `async_fifo` carries one frequency per clock domain, since a single figure has no meaning across two independent clocks.
+`fmax.sh` places and routes each FIFO in a registered-boundary harness, and `vivado/fmax.tcl` drives the same harnesses to reproduce the frequencies above, with the two clock domains declared asynchronous. `async_fifo` carries one frequency per clock domain, since a single figure has no meaning across two independent clocks.
 
 ## Building and running
 
