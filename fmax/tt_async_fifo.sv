@@ -1,4 +1,3 @@
-// Async FIFO harness
 module tt_async_fifo (
     input  logic wr_clk,
     input  logic rd_clk,
