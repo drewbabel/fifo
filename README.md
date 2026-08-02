@@ -27,16 +27,16 @@ The asynchronous proof runs unbounded k-induction over every input and clock pat
 
 ## Implementation
 
-Synthesized for the Xilinx Artix-7 XC7A35T. Cell counts come from Yosys, and the frequencies come from AMD Vivado 2026.1 place-and-route.
+Utilization comes from AMD Vivado 2026.1 out-of-context synthesis for the Xilinx Artix-7 XC7A35T, and the frequencies come from Vivado place-and-route of the `fmax/` harnesses.
 
-| Module | LUTs | Flip-flops | Distributed RAM | Fmax |
+| Module | Logic LUTs | LUTRAM | Flip-flops | Fmax |
 |--------|------|------------|-----------------|------|
-| `synchronizer` | 0 | 2 | 0 | |
-| `fifomem` | 2 | 8 | 0 | |
-| `sync_fifo` | 8 | 18 | 2 | 346.1 MHz |
-| `wptr_full` | 9 | 9 | 0 | |
-| `rptr_empty` | 9 | 9 | 0 | |
-| `async_fifo` | 19 | 46 | 2 | 375.8 MHz write, 409.2 MHz read |
+| `synchronizer` | 1 | 0 | 2 | |
+| `fifomem` | 2 | 8 | 8 | |
+| `sync_fifo` | 14 | 8 | 18 | 346.1 MHz |
+| `wptr_full` | 10 | 0 | 9 | |
+| `rptr_empty` | 10 | 0 | 9 | |
+| `async_fifo` | 20 | 8 | 46 | 375.8 MHz write, 409.2 MHz read |
 
 `fmax.sh` places and routes each FIFO in a registered-boundary harness, and `vivado/fmax.tcl` drives the same harnesses to reproduce the frequencies above, with the two clock domains declared asynchronous. `async_fifo` carries one frequency per clock domain, since a single figure has no meaning across two independent clocks.
 
@@ -48,7 +48,6 @@ make wave MOD=sync_fifo                             # run the testbench and open
 make formal MOD=async_fifo                          # run the module's SymbiYosys proof
 make trace MOD=async_fifo                           # print a formal counterexample as text
 make view-formal MOD=async_fifo                     # open a formal waveform in Surfer
-./synth_stats.sh sync_fifo                          # report a module's synthesis cost
 ./fmax.sh async_fifo tt_async_fifo wr_clk rd_clk    # fmax and utilization
 ```
 
