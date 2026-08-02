@@ -50,13 +50,13 @@ module async_fifo_tb ();
     wr_rst_n = 1'b0;
     repeat (2) @(posedge wr_clk);
     wr_rst_n = 1'b1;
-  endtask  //automatic
+  endtask  // Automatic
 
   task automatic rd_reset();
     rd_rst_n = 1'b0;
     repeat (2) @(posedge rd_clk);
     rd_rst_n = 1'b1;
-  endtask  //automatic
+  endtask  // Automatic
 
   task automatic do_verdict();
     int check_cnt;
@@ -68,14 +68,14 @@ module async_fifo_tb ();
       $display("FAILED: %0d checks, %0d errors (need >=%0d checks)", checks, errors, check_cnt);
     end
     $finish;
-  endtask  //automatic
+  endtask  // Automatic
 
   task automatic do_reset();
     fork
       wr_reset();
       rd_reset();
     join
-  endtask  //automatic
+  endtask  // Automatic
 
   task automatic write_data(input logic [Width-1:0] data);
     @(posedge wr_clk);
@@ -86,7 +86,7 @@ module async_fifo_tb ();
       @(posedge wr_clk);
       #1 wr_en = 1'b0;
     end
-  endtask  //automatic
+  endtask  // Automatic
 
   task automatic read_data();
     logic [Width-1:0] got;
@@ -106,13 +106,13 @@ module async_fifo_tb ();
         $error("t=%0t data mismatch: got=%b exp=%b", $time, got, exp);
       end
     end
-  endtask  //automatic
+  endtask  // Automatic
 
   task automatic stall_read(input int stall_percent);
     if ($urandom_range(0, 100) > stall_percent) begin
       read_data();
     end
-  endtask  //automatic
+  endtask  // Automatic
 
   initial begin
     $dumpfile("async_fifo_tb.vcd");

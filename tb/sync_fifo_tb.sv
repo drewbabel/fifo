@@ -41,7 +41,7 @@ module sync_fifo_tb ();
     @(posedge clk);
     #1 rst_n = 1'b1;
     @(posedge clk);
-  endtask  //automatic
+  endtask  // Automatic
 
   task automatic do_verdict();
     @(posedge clk);
@@ -51,7 +51,7 @@ module sync_fifo_tb ();
       $display("FAILED: %0d checks, %0d errors", checks, errors);
     end
     $finish;
-  endtask  //automatic
+  endtask  // Automatic
 
   task automatic check_size();
     checks++;
@@ -65,7 +65,7 @@ module sync_fifo_tb ();
       errors++;
       $error("t=%0t full mismatch: got=%b exp=%b", $time, full, exp_full);
     end
-  endtask  //automatic
+  endtask  // Automatic
 
   task automatic write_data(input logic [Width-1:0] data);
     wr_data = data;
@@ -73,7 +73,7 @@ module sync_fifo_tb ();
     if (byte_q.size() < Depth) byte_q.push_back(data);
     @(posedge clk);
     #1 wr_en = 1'b0;
-  endtask  //automatic
+  endtask  // Automatic
 
   task automatic read_data();
     logic [Width-1:0] got;
@@ -93,7 +93,7 @@ module sync_fifo_tb ();
         $error("t=%0t data mismatch: got=%b exp=%b", $time, got, exp);
       end
     end
-  endtask  //automatic
+  endtask  // Automatic
 
   initial begin
     $dumpfile("tb.vcd");
@@ -122,7 +122,7 @@ module sync_fifo_tb ();
     #200_000_000 $fatal(1, "TIMEOUT: sim exceeded max time");
   end
 
-  // Reference Model
+  // Reference model
   always @(posedge clk) begin
     exp_empty = (byte_q.size() == 0);
     exp_full  = (byte_q.size() == Depth);
