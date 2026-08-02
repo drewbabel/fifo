@@ -1,4 +1,3 @@
-// Sync FIFO harness
 module tt_sync_fifo (
     input  logic clk,
     input  logic rst_n,

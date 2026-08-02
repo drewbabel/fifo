@@ -11,3 +11,4 @@ formal/*/
 .vscode/
 
 *.ron
+vivado/build/
