@@ -63,9 +63,9 @@ module async_fifo_tb ();
     wait (wr_clk && rd_clk);
     check_cnt = iterations / 4;
     if (errors == 0 && checks >= check_cnt) begin
-      $display("PASSED: %0d checks, %0d errors", checks, errors);
+      $display("PASS: %0d checks, %0d mismatches", checks, errors);
     end else begin
-      $display("FAILED: %0d checks, %0d errors (need >=%0d checks)", checks, errors, check_cnt);
+      $fatal(1, "FAIL: %0d mismatches, %0d checks (need >=%0d checks)", errors, checks, check_cnt);
     end
     $finish;
   endtask  // Automatic
