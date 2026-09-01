@@ -1,14 +1,13 @@
 module synchronizer #(
     parameter int WIDTH = 1
 ) (
+`ifdef FORMAL
+    output logic [WIDTH-1:0] mid,  // Stage-1 flop
+`endif
     input logic clk,
     input logic rst_n,
     input logic [WIDTH-1:0] d,
     output logic [WIDTH-1:0] q
-`ifdef FORMAL
-    ,
-    output logic [WIDTH-1:0] mid  // Stage-1 flop, exposed for formal only
-`endif
 );
 
   logic [WIDTH-1:0] ff;
